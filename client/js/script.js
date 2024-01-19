@@ -4,7 +4,11 @@ const input = form['fruit-input'];
 const API_URL = "http://localhost:3000/api";
 
 async function fetchPoem(fruit) {
-    console.log(fruit);
+    console.log('fruit:', fruit);
+
+
+
+    console.log(JSON.stringify(fruit));
 
     try {
         const response = await fetch(
@@ -14,12 +18,15 @@ async function fetchPoem(fruit) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(fruit)
+                body: JSON.stringify({
+                    fruit: fruit
+                })
+
             }
         );
 
         const message = await response.json();
-        console.log(message);
+        console.log('message:', message);
 
     } catch (error) {
         console.error("Failed to fetch poem:", error);
